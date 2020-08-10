@@ -1,0 +1,22 @@
+-
+  name: inventory
+  hosts: hosts
+  strategy: free
+  any_errors_fatal: true
+  roles:
+  - deploy_python
+  - deploy_db
+  - deploy_web
+
+  tasks:
+  - name: Rolling back - Ending playbook
+    fail:
+      msg: "Configuration file is not valid. Please check that before re-running the playbook."
+    when: result is failed
+  - mail:
+      to: somebody@xxxmail.com
+      subject: "Web server deployed"
+      body: Web Server have been Deployed!!
+    ignore_errors: yes
+    
+    
