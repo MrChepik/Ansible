@@ -10,7 +10,6 @@
     db_user: admin
     db_user_password: Passw0rd
   roles:
-  - deploy_docker_container
   - deploy_python
   - deploy_db
   - deploy_web

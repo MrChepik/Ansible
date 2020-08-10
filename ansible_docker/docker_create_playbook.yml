@@ -1,0 +1,14 @@
+- name: Make sure the Docker container is running
+  connection: local
+  hosts: localhost
+  tasks:
+  - name: Create Docker container
+    docker_image:
+      name: mmumshad/ubuntu-ssh-enabled
+      docker_host: "{{ item }}"
+      state: present
+    with_items:
+    - host1
+    - host2
+    - host3
+    - host4
