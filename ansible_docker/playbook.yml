@@ -3,6 +3,10 @@
   hosts: hosts
   strategy: free
   any_errors_fatal: true
+  vars:
+    db_name: my_db
+    db_user: admin
+    db_user_password: Passw0rd
   roles:
   - deploy_python
   - deploy_db
