@@ -1,0 +1,11 @@
+---
+# tasks file for deploy_docker_container
+  - name: pull an docker image
+    docker:
+      name: "{{ item }}"
+      image: mmumshad/ubuntu-ssh-enabled
+    with_items:
+    - host1
+    - host2
+    - host3
+    - host4
