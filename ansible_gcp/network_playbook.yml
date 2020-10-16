@@ -1,0 +1,28 @@
+-  
+  name: Networking
+  hosts: localhost
+  tasks:
+    - name: Allow traffic
+      gce_net:
+        name: default
+        fwname: "allow-http"
+        allowed: tcp:80
+        state: "present"
+        src_tags: "foo,bar"
+        service_account_email: "{{ service_account_email }}"
+        project_id: "{{ project_id }}"
+        credentials_file: "{{ credentials_file }}" 
+
+    - name: Load balancer
+      gce_lb:
+        name: loadbalancer
+        region: us-central1
+        members: ["us-central1-a/web-server-1", "us-central1-a/web-server-2"]
+        httphealthcheck_name: hc
+        httphealthcheck_port: 80
+        httphealthcheck_path: "/up"
+        service_account_email: "{{ service_account_email }}"
+        project_id: "{{ project_id }}"
+        credentials_file: "{{ credentials_file }}"
+
+

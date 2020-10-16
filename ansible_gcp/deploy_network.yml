@@ -1,0 +1,46 @@
+-  
+  name: Networking
+  hosts: localhost
+  tasks:
+    - name: Allow traffic
+      gce_net:
+        name: default
+        fwname: "allow-http"
+        allowed: tcp:80
+        state: "present"
+        src_tags: "foo,bar"
+        service_account_email: "{{ service_account_email }}"
+        project_id: "{{ project_id }}"
+        credentials_file: "{{ credentials_file }}" 
+
+    - name: Load balancer
+      gce_lb:
+        name: loadbalancer
+        region: us-central1
+        members: ["us-central1-a/web-server-1", "us-central1-a/web-server-2"]
+        httphealthcheck_name: hc
+        httphealthcheck_port: 80
+        httphealthcheck_path: "/up"
+        service_account_email: "{{ service_account_email }}"
+        project_id: "{{ project_id }}"
+        credentials_file: "{{ credentials_file }}"
+
+      register: load_balancer_results
+      
+    - name: print result
+      debug:
+        msg:
+        - "{{ load_balancer_results }}"
+       
+
+    - name: send notification
+      mail:
+        host: smtp.gmail.com
+        port: 465
+        username: boris.chepikov@gmail.com
+        password: XtgbR_1234U2
+        to: Boris Chepikov <boris.chepikov@gmail.com>
+        subject: Ansible-report
+        body: 'Job has been completed! Access to web app trough link: http://{{ load_balancer_results.external_ip }}'
+
+

@@ -1,0 +1,12 @@
+-
+  name: update server
+  hosts: web_servers
+  become: yes
+  become_method: sudo
+  roles:
+  - php
+  
+
+
+    
+    

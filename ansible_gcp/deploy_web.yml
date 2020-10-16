@@ -1,0 +1,13 @@
+-
+  name: deploy apps into web-server
+  hosts: web_servers
+  become: yes
+  become_method: sudo
+  roles:
+  - deploy_python
+  - deploy_web
+  
+
+
+    
+    

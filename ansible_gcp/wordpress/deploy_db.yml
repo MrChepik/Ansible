@@ -1,0 +1,14 @@
+-
+  name: deploy apps into db-server
+  hosts: db_servers
+  become: yes
+  become_method: sudo
+  roles:
+  - server
+  - python
+  - mysql
+  
+
+
+    
+    

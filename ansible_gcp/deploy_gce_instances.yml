@@ -1,0 +1,47 @@
+- name: Create an instance
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  
+  tasks:
+  - name: launch web instance
+    gce:
+        instance_names: "{{ web_instances }}"
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+    register: launch_web_result
+
+  - name: launch db instance
+    gce:
+        instance_names: "{{ db_instances }}"
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+    register: launch_db_result
+
+  - name: print result
+    debug:
+      msg:
+       - "{{ launch_db_result }}"
+       - "{{ launch_web_result }}"
+
+  - name: db server record in-memory inv
+    add_host:
+      hostname: '{{ item.public_ip }}'
+      private_ip: '{{ item.private_ip }}'
+      groupname: db_servers
+    with_items: '{{ launch_db_result.instance_data }}'
+
+  - name: web server record in-memory inv
+    add_host:
+      hostname: '{{ item.public_ip }}'
+      private_ip: '{{ item.private_ip }}'
+      db_server_ip: '{{ launch_db_result.instance_data[0].private_ip }}'
+      groupname: web_servers
+    with_items: '{{ launch_web_result.instance_data }}'

@@ -1,0 +1,2 @@
+web-server-1 ansible_host
+db-server ansible_host private_ip

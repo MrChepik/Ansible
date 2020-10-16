@@ -1,0 +1,20 @@
+- hosts: localhost
+
+
+- name: deploy gce instance
+  include: deploy_gce_instances.yml
+  
+- name: deploy server
+  include: deploy_server.yml
+  
+- name: deploy php
+  include: deploy_php.yml
+  
+- name: deploy db
+  include: deploy_db.yml
+  
+- name: deploy wp
+  include: deploy_wp.yml
+  
+- name: deploy network
+  include: deploy_network.yml

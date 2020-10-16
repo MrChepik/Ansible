@@ -1,0 +1,12 @@
+-
+  name: deploy apps into web-server
+  hosts: web_servers
+  become: yes
+  become_method: sudo
+  roles:
+  - wordpress
+  
+
+
+    
+    

@@ -1,0 +1,9 @@
+---
+# tasks file for php
+
+- name: install php
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - php-gd 
+    - php-ssh2    

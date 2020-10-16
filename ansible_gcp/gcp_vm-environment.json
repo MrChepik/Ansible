@@ -1,0 +1,75 @@
+ok: [localhost] => {
+    "msg": [
+        {
+            "changed": false,
+            "failed": false,
+            "instance_data": [
+                {
+                    "disks": [
+                        "web-server-1"
+                    ],
+                    "image": "debian-10-buster-v20200805",
+                    "machine_type": "g1-small",
+                    "metadata": {},
+                    "name": "web-server-1",
+                    "network": "default",
+                    "private_ip": "10.128.0.7",
+                    "public_ip": "104.198.132.136",
+                    "status": "RUNNING",
+                    "subnetwork": "default",
+                    "tags": [],
+                    "zone": "us-central1-a"
+                },
+                {
+                    "disks": [
+                        "web-server-2"
+                    ],
+                    "image": "debian-10-buster-v20200805",
+                    "machine_type": "g1-small",
+                    "metadata": {},
+                    "name": "web-server-2",
+                    "network": "default",
+                    "private_ip": "10.128.0.8",
+                    "public_ip": "34.67.232.230",
+                    "status": "RUNNING",
+                    "subnetwork": "default",
+                    "tags": [],
+                    "zone": "us-central1-a"
+                }
+            ],
+            "instance_names": [
+                "web-server-1",
+                "web-server-2"
+            ],
+            "state": "present",
+            "zone": "us-central1-a"
+        },
+        {
+            "changed": false,
+            "failed": false,
+            "instance_data": [
+                {
+                    "disks": [
+                        "db-server"
+                    ],
+                    "image": "debian-10-buster-v20200805",
+                    "machine_type": "g1-small",
+                    "metadata": {},
+                    "name": "db-server",
+                    "network": "default",
+                    "private_ip": "10.128.0.6",
+                    "public_ip": "34.67.166.182",
+                    "status": "RUNNING",
+                    "subnetwork": "default",
+                    "tags": [],
+                    "zone": "us-central1-a"
+                }
+            ],
+            "instance_names": [
+                "db-server"
+            ],
+            "state": "present",
+            "zone": "us-central1-a"
+        }
+    ]
+}

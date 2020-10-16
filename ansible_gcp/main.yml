@@ -1,0 +1,14 @@
+- hosts: localhost
+
+
+- name: deploy gce instance
+  include: deploy_gce_instances.yml
+  
+- name: deploy db
+  include: deploy_db.yml
+  
+- name: deploy web
+  include: deploy_web.yml
+  
+- name: deploy network
+  include: deploy_network.yml

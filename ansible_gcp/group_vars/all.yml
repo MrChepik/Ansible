@@ -1,0 +1,16 @@
+    ansible_ssh_private_key_file: /home/boris/.ssh/google_compute_engine
+    ansible_user: boris.chepikov
+    #db_name: my_db
+    #db_user: admin
+    #db_password: Passw0rd
+    service_account_email: ansible@ansible-automation-286111.iam.gserviceaccount.com 
+    project_id: ansible-automation-286111
+    credentials_file: /home/boris/git-repos/ansible/ansible_gcp/service_account_key/ansible-automation-286111-ad87aabeab81.json
+    machine_type: g1-small
+    image: debian-10
+    #web_instances: web-server-1
+    #db_instances: db-server
+    master_instance: master
+    node01_instance: node01
+    node02_instance: node02
+    loadbalancer: loadbalancer

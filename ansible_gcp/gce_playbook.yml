@@ -1,0 +1,83 @@
+- name: Create an instance
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  
+  tasks:
+  - name: launch master instance
+    gce:
+        instance_names: "{{ master_instance }}"
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+    register: launch_master_result
+
+  - name: launch node01 instance
+    gce:
+        instance_names: "{{ node01_instance }}"
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+    register: launch_node01_result
+    
+  - name: launch node02 instance
+    gce:
+        instance_names: "{{ node02_instance }}"
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+    register: launch_node02_result
+
+  - name: launch loadbalancer instance
+    gce:
+        instance_names: "{{ loadbalancer }}"
+        machine_type: "{{ machine_type }}"
+        image: "{{ image }}"
+        service_account_email: "{{ service_account_email }}"
+        credentials_file: "{{ credentials_file }}"
+        project_id: "{{ project_id }}"
+    register: launch_loadbalancer_result
+    
+
+
+
+  - name:
+    debug:
+      msg:
+       - "{{ launch_master_result }}"
+       - "{{ launch_node01_result }}"
+       - "{{ launch_node02_result }}"
+       - "{{ launch_loadbalancer_result }}"
+
+  - name: Create dir
+    file:
+      path: ./tasks_result
+      state: directory
+      mode: 0755 
+   
+  - name: save to file master
+    copy:
+      content: "{{ launch_master_result | to_nice_json }}"
+      dest: ./tasks_result/master_instance.json
+       
+  - name: save to file node01
+    copy:
+      content: "{{ launch_node01_result | to_nice_json }}"
+      dest: ./tasks_result/node01_instance.json
+      
+  - name: save to file node02
+    copy:
+      content: "{{ launch_node02_result | to_nice_json }}"
+      dest: ./tasks_result/node02_instance.json
+     
+  - name: save to file loadbalancer
+    copy:
+      content: "{{ launch_loadbalancer_result | to_nice_json }}"
+      dest: ./tasks_result/loadbalancer_instance.json

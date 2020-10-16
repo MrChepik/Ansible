@@ -1,0 +1,27 @@
+{
+    "changed": true,
+    "failed": false,
+    "instance_data": [
+        {
+            "disks": [
+                "master"
+            ],
+            "image": "debian-10-buster-v20200902",
+            "machine_type": "g1-small",
+            "metadata": {},
+            "name": "master",
+            "network": "default",
+            "private_ip": "10.128.0.31",
+            "public_ip": "34.123.27.140",
+            "status": "RUNNING",
+            "subnetwork": "default",
+            "tags": [],
+            "zone": "us-central1-a"
+        }
+    ],
+    "instance_names": [
+        "master"
+    ],
+    "state": "present",
+    "zone": "us-central1-a"
+}
